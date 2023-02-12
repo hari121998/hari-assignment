@@ -55,7 +55,7 @@ class Login extends Component {
     }
     const {history} = this.props
     this.setState({username: '', errorMsg: '', password: ''})
-    Cookies.set('LoginUser', checkUserName.userId, {expires: 1})
+    Cookies.set('loginUser', checkUserName.userId, {expires: 1})
     if (activeCategory === selectDetails[0].category) {
       return history.replace('/master')
     }
