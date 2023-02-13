@@ -160,74 +160,91 @@ const masterQuestions = [
     id: uuidv4(),
     displayText: '7 multiplied by 5',
     displayAnswer: seven(times(five())),
+    isAnswered: false,
   },
   {
     id: uuidv4(),
     displayText: 'Addition of Four and Nine',
     displayAnswer: four(plus(nine())),
+    isAnswered: false,
   },
   {
     id: uuidv4(),
     displayText: 'Eight subtracted by Three',
     displayAnswer: eight(minus(three())),
+    isAnswered: false,
   },
   {
     id: uuidv4(),
     displayText: 'Six divided By Two',
     displayAnswer: six(dividedBy(two())),
+    isAnswered: false,
   },
 
   {
     id: uuidv4(),
     displayText: 'zero divided by one',
     displayAnswer: zero(dividedBy(one())),
+    isAnswered: false,
   },
   {
     id: uuidv4(),
     displayText: 'Addition of Eight and Four',
     displayAnswer: eight(plus(four())),
+    isAnswered: false,
   },
   {
     id: uuidv4(),
     displayText: 'Six subtracted by Two',
     displayAnswer: six(minus(two())),
+    isAnswered: false,
   },
   {
     id: uuidv4(),
     displayText: 'Three divided by Nine',
     displayAnswer: three(dividedBy(nine())),
+    isAnswered: false,
   },
   {
     id: uuidv4(),
     displayText: 'Seven subtracted by Nine',
     displayAnswer: seven(minus(nine())),
+    isAnswered: false,
   },
   {
     id: uuidv4(),
     displayText: 'Two multiplied by Two',
     displayAnswer: two(times(two())),
+    isAnswered: false,
   },
 
   {
     id: uuidv4(),
     displayText: 'Two divided by Two',
     displayAnswer: two(dividedBy(two())),
+    isAnswered: false,
   },
   {
     id: uuidv4(),
     displayText: 'Nine multiplied by Five',
     displayAnswer: nine(times(five())),
+    isAnswered: false,
   },
   {
     id: uuidv4(),
     displayText: 'Addition of four and six',
     displayAnswer: four(plus(six())),
+    isAnswered: false,
   },
   {
     id: uuidv4(),
     displayText: 'Four multiplied by Four',
     displayAnswer: four(times(four())),
+    isAnswered: false,
   },
 ]
 
-export default masterQuestions
+const parsedMasterQuestions = JSON.stringify(masterQuestions)
+localStorage.setItem('questions', parsedMasterQuestions)
+
+export {masterQuestions, zero}

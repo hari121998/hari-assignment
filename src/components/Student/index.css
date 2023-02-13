@@ -1,0 +1,24 @@
+.master-questions-list-container .student-num {
+  width: 10% !important;
+}
+.master-questions-list-container .student-question {
+  width: 30% !important;
+}
+.master-questions-list-container .student-answer {
+  width: 30% !important;
+}
+
+.master-questions-list-container .student-input {
+  width: 30% !important;
+}
+.input-answer {
+  padding: 5px 10px;
+  margin: 0 auto;
+  border-radius: 5px;
+  font-family: 'Roboto';
+  font-weight: 500;
+  color: #1e293b;
+}
+.items {
+  padding: 0 10px;
+}

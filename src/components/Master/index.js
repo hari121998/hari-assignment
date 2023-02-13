@@ -1,8 +1,10 @@
 import {Component} from 'react'
 import {Redirect} from 'react-router-dom'
 import Cookies from 'js-cookie'
-import masterQuestions from '../questions'
+import {zero} from '../questions'
 import './index.css'
+
+const masterQuestions = JSON.parse(localStorage.getItem('questions'))
 
 class Master extends Component {
   state = {isStudentAnswers: false}

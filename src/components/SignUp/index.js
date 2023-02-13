@@ -1,7 +1,7 @@
 import {Component} from 'react'
-import {Link} from 'react-router-dom'
-
 import {v4 as uuidv4} from 'uuid'
+import {Link} from 'react-router-dom'
+import {masterQuestions} from '../questions'
 
 import './index.css'
 
@@ -13,18 +13,21 @@ if (checkUserdetails === null) {
       username: 'charan',
       category: 'MASTER',
       password: 'Charan123',
+      questions: masterQuestions,
     },
     {
       userId: uuidv4(),
       username: 'hari',
       category: 'MASTER',
       password: 'Hari123',
+      questions: masterQuestions,
     },
     {
       userId: uuidv4(),
       username: 'teja',
       category: 'STUDENT',
       password: 'teja123',
+      questions: masterQuestions,
     },
   ]
   const userDetailsString = JSON.stringify(userDetails)
@@ -68,10 +71,16 @@ class SignUp extends Component {
         errorMsg: 'username already exists Please choose another Name',
       })
     }
-
+    const localMasterQuestions = JSON.parse(localStorage.getItem('questions'))
     const newUsersList = [
       ...parsedUserDetails,
-      {userId: uuidv4(), username, category: activeCategory, password},
+      {
+        userId: uuidv4(),
+        username,
+        category: activeCategory,
+        password,
+        questions: localMasterQuestions,
+      },
     ]
     const stringifiedList = JSON.stringify(newUsersList)
     await localStorage.setItem('userDetails', stringifiedList)
