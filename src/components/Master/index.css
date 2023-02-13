@@ -40,15 +40,35 @@
   padding: 0;
   border: 1px solid #cbced2;
   border-radius: 10px;
-  width: 50%;
+  width: 60%;
   color: #cbced2;
   text-align: center;
   font-family: 'Roboto';
   font-weight: 400;
 }
+.activity-log-student {
+  color: #c70039;
+  padding: 0 20px;
+}
 .header-display {
   color: #c70039;
   font-weight: bold;
+}
+.master-questions-list-container .question {
+  width: 20%;
+}
+.master-questions-list-container .answer {
+  width: 10%;
+}
+.master-questions-list-container .name {
+  width: 15%;
+}
+
+.master-questions-list-container .status {
+  width: 10%;
+}
+.master-questions-list-container .student-answer {
+  width: 10%;
 }
 
 .master-questions-list-container li .count {
@@ -66,4 +86,36 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #cbced2;
+}
+.master-input-form-con {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  width: 150px;
+}
+.master-input-form-con label {
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 16px;
+  margin: 10px 0 5px 0;
+  color: #4682b4;
+}
+
+.master-input-form-con input,
+.master-input-form-con select {
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 16px;
+  color: #1e293b;
+  padding: 0 10px;
+}
+
+.submit-btn {
+  margin: 10px 0 0 0;
+}
+.desc {
+  color: #708090;
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 14px;
 }

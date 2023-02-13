@@ -1,0 +1,13 @@
+.student-answers-list {
+  padding: 0 20px;
+}
+.green-color {
+  color: #2e8b57;
+  font-weight: bold;
+}
+.red-color {
+  color: #ff4500;
+}
+.not-answered {
+  color: #20b2aa;
+}

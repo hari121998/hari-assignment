@@ -4,8 +4,6 @@ import Cookies from 'js-cookie'
 import './index.css'
 import StudentDetails from '../StudentDetails'
 
-const masterQuestions = JSON.parse(localStorage.getItem('questions'))
-
 const checkStudentDetails = () => {
   const loginUser = Cookies.get('loginUser')
   const userDetails = JSON.parse(localStorage.getItem('userDetails'))
@@ -20,7 +18,6 @@ class Student extends Component {
   state = {studentData: {...checkStudentDetails()}, inputAnswerValue: ''}
 
   onSubmitInputValue = (id, value) => {
-    console.log(id, value)
     const {studentData} = this.state
     const {questions} = studentData
     const updateData = questions.map(question => {
@@ -30,14 +27,14 @@ class Student extends Component {
       return question
     })
     const userDetails = JSON.parse(localStorage.getItem('userDetails'))
-    console.log(updateData)
+    // console.log(updateData)
     const newUserDetails = userDetails.map(eachItem => {
       if (eachItem.userId === studentData.userId) {
         return {...eachItem, questions: [...updateData]}
       }
       return {...eachItem}
     })
-    console.log(newUserDetails)
+    // console.log(newUserDetails)
     localStorage.setItem('userDetails', JSON.stringify(newUserDetails))
     this.setState({studentData: {...studentData, questions: updateData}})
   }
@@ -55,7 +52,9 @@ class Student extends Component {
           <li>
             <p className="student-num header-display">Sl.No</p>
             <p className="student-question header-display">Question</p>
-            <p className="student-answer header-display">Student Answer</p>
+            <p className="student-answer header-display">
+              Student Answer Status
+            </p>
             <p className="student-input header-display">
               Please Enter Your Answer
             </p>
