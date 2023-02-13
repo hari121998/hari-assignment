@@ -1,5 +1,4 @@
 import {Route, Switch, Redirect} from 'react-router-dom'
-
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Master from './components/Master'
