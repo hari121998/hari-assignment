@@ -199,52 +199,27 @@ const masterQuestions = [
     displayAnswer: six(minus(two())),
     isAnswered: false,
   },
-  {
-    id: uuidv4(),
-    displayText: 'Three divided by Nine',
-    displayAnswer: three(dividedBy(nine())),
-    isAnswered: false,
-  },
-  {
-    id: uuidv4(),
-    displayText: 'Seven subtracted by Nine',
-    displayAnswer: seven(minus(nine())),
-    isAnswered: false,
-  },
-  {
-    id: uuidv4(),
-    displayText: 'Two multiplied by Two',
-    displayAnswer: two(times(two())),
-    isAnswered: false,
-  },
-
-  {
-    id: uuidv4(),
-    displayText: 'Two divided by Two',
-    displayAnswer: two(dividedBy(two())),
-    isAnswered: false,
-  },
-  {
-    id: uuidv4(),
-    displayText: 'Nine multiplied by Five',
-    displayAnswer: nine(times(five())),
-    isAnswered: false,
-  },
-  {
-    id: uuidv4(),
-    displayText: 'Addition of four and six',
-    displayAnswer: four(plus(six())),
-    isAnswered: false,
-  },
-  {
-    id: uuidv4(),
-    displayText: 'Four multiplied by Four',
-    displayAnswer: four(times(four())),
-    isAnswered: false,
-  },
 ]
+const checkQuestions = localStorage.getItem('questions')
 
-const parsedMasterQuestions = JSON.stringify(masterQuestions)
-localStorage.setItem('questions', parsedMasterQuestions)
-
-export {masterQuestions, zero}
+if (checkQuestions === null) {
+  const parsedMasterQuestions = JSON.stringify(masterQuestions)
+  localStorage.setItem('questions', parsedMasterQuestions)
+}
+export {
+  masterQuestions,
+  zero,
+  one,
+  two,
+  three,
+  four,
+  five,
+  six,
+  seven,
+  eight,
+  nine,
+  times,
+  plus,
+  minus,
+  dividedBy,
+}
