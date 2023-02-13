@@ -2,17 +2,51 @@ import {Component} from 'react'
 import {Redirect} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import './index.css'
+import StudentDetails from '../StudentDetails'
 
 const masterQuestions = JSON.parse(localStorage.getItem('questions'))
 
+const checkStudentDetails = () => {
+  const loginUser = Cookies.get('loginUser')
+  const userDetails = JSON.parse(localStorage.getItem('userDetails'))
+  const findCategory = userDetails.find(
+    eachItem => eachItem.userId === loginUser,
+  )
+
+  return findCategory
+}
+
 class Student extends Component {
-  componentDidMount = () => {
-    this.addStudentsQuestions()
+  state = {studentData: {...checkStudentDetails()}, inputAnswerValue: ''}
+
+  onSubmitInputValue = (id, value) => {
+    console.log(id, value)
+    const {studentData} = this.state
+    const {questions} = studentData
+    const updateData = questions.map(question => {
+      if (question.id === id) {
+        return {...question, studentAnswer: value, isAnswered: true}
+      }
+      return question
+    })
+    const userDetails = JSON.parse(localStorage.getItem('userDetails'))
+    console.log(updateData)
+    const newUserDetails = userDetails.map(eachItem => {
+      if (eachItem.userId === studentData.userId) {
+        return {...eachItem, questions: [...updateData]}
+      }
+      return {...eachItem}
+    })
+    console.log(newUserDetails)
+    localStorage.setItem('userDetails', JSON.stringify(newUserDetails))
+    this.setState({studentData: {...studentData, questions: updateData}})
   }
 
-  addStudentsQuestions = () => {}
-
   renderMasterListQuestions = () => {
+    const {studentData, inputAnswerValue} = this.state
+
+    const {questions} = studentData
+
     let count = 0
     return (
       <>
@@ -26,19 +60,16 @@ class Student extends Component {
               Please Enter Your Answer
             </p>
           </li>
-          {masterQuestions.map(eachItem => {
+          {questions.map(eachItem => {
             count += 1
             return (
-              <li key={eachItem.id} className="master-items-questions items">
-                <p className="student-num">{count}</p>
-                <p className="student-question">{eachItem.displayText}</p>
-                <p className="student-answer"> Answered</p>
-                <input
-                  className="student-input input-answer"
-                  type="number"
-                  placeholder="Enter Your Answer"
-                />
-              </li>
+              <StudentDetails
+                key={eachItem.id}
+                onSubmitValue={this.onSubmitInputValue}
+                inputAnswerValue={inputAnswerValue}
+                count={count}
+                studentDetails={eachItem}
+              />
             )
           })}
         </ul>
@@ -52,18 +83,12 @@ class Student extends Component {
     history.replace('/login')
   }
 
-  checkStudentDetails = () => {
-    const loginUser = Cookies.get('loginUser')
-    const userDetails = JSON.parse(localStorage.getItem('userDetails'))
-    const findCategory = userDetails.find(
-      eachItem => eachItem.userId === loginUser,
-    )
-
-    return findCategory
-  }
-
   render() {
-    const isStudent = this.checkStudentDetails()
+    const {studentData} = this.state
+    if (studentData.length === 0) {
+      return <h1>NO Data Found</h1>
+    }
+    const isStudent = checkStudentDetails()
     if (isStudent === undefined) {
       return <Redirect to="/login" />
     }
